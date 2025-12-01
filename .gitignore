@@ -1,0 +1,49 @@
+﻿# Visual Studio
+.vs/
+
+# Build results
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Auto-generated files
+*.cache
+*.config
+*.dbmdl
+
+# NuGet
+*.nupkg
+packages/
+*.snupkg
+*.nuspec
+
+# Backup files
+*.bak
+
+# Publish output
+publish/
+dist/
+
+# Debug/release folders
+Debug/
+Release/
+
+# Other garbage
+*.tmp
+*.temp
+
+# Windows Installer leftovers
+*.msi
+*.msix
+*.msm
+*.msp
+
+# JetBrains Rider
+.idea/
