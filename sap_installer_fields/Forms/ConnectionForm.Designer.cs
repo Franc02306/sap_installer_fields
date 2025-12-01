@@ -42,13 +42,14 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtServer = new System.Windows.Forms.TextBox();
             this.txtResponse = new System.Windows.Forms.RichTextBox();
+            this.btnEnter = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnConnect
             // 
             this.btnConnect.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConnect.Location = new System.Drawing.Point(469, 97);
+            this.btnConnect.Location = new System.Drawing.Point(467, 43);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(104, 44);
             this.btnConnect.TabIndex = 0;
@@ -104,6 +105,7 @@
             // 
             // cmbDbType
             // 
+            this.cmbDbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDbType.FormattingEnabled = true;
             this.cmbDbType.Location = new System.Drawing.Point(132, 56);
             this.cmbDbType.Name = "cmbDbType";
@@ -161,11 +163,25 @@
             this.txtResponse.TabIndex = 15;
             this.txtResponse.Text = "";
             // 
+            // btnEnter
+            // 
+            this.btnEnter.BackColor = System.Drawing.Color.LightGreen;
+            this.btnEnter.Enabled = false;
+            this.btnEnter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnter.Location = new System.Drawing.Point(467, 122);
+            this.btnEnter.Name = "btnEnter";
+            this.btnEnter.Size = new System.Drawing.Size(104, 44);
+            this.btnEnter.TabIndex = 16;
+            this.btnEnter.Text = "Entrar";
+            this.btnEnter.UseVisualStyleBackColor = false;
+            this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
+            // 
             // ConnectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(667, 417);
+            this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.txtResponse);
             this.Controls.Add(this.txtServer);
             this.Controls.Add(this.txtPassword);
@@ -203,6 +219,7 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtServer;
         private System.Windows.Forms.RichTextBox txtResponse;
+        private System.Windows.Forms.Button btnEnter;
     }
 }
 

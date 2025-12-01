@@ -16,6 +16,8 @@ namespace sap_installer_fields
             InitializeComponent();
             _connectionService = new SapConnectionService();
             LoadDbType();
+
+            this.AcceptButton = btnConnect;
         }
 
         private void LoadDbType()
@@ -28,6 +30,11 @@ namespace sap_installer_fields
         private void btnConnect_Click(object sender, EventArgs e)
         {
             txtResponse.Clear();
+
+            txtResponse.SelectionColor = Color.Blue;
+            txtResponse.SelectionFont = new Font(txtResponse.Font, FontStyle.Italic);
+            txtResponse.AppendText("Conectando...\n");
+            Application.DoEvents();
 
             try
             {
@@ -42,6 +49,8 @@ namespace sap_installer_fields
 
                 var company = _connectionService.Connect(request);
 
+                txtResponse.Clear();
+
                 // SUCCESS UI
                 txtResponse.SelectionColor = Color.Green;
                 txtResponse.SelectionFont = new Font(txtResponse.Font, FontStyle.Bold);
@@ -50,9 +59,16 @@ namespace sap_installer_fields
                 txtResponse.SelectionColor = Color.Black;
                 txtResponse.SelectionFont = new Font(txtResponse.Font, FontStyle.Regular);
                 txtResponse.AppendText("Conexión con SAP establecida.");
+
+                // Activando botón al conectar de forma correcta a SAP
+                btnEnter.Enabled = true;
+                btnEnter.BackColor = Color.LightGreen;
+                btnEnter.ForeColor = Color.Black;
             }
             catch (Exception ex)
             {
+                txtResponse.Clear();
+
                 // ERROR UI
                 txtResponse.SelectionColor = Color.Red;
                 txtResponse.SelectionFont = new Font(txtResponse.Font, FontStyle.Bold);
@@ -61,6 +77,10 @@ namespace sap_installer_fields
                 txtResponse.SelectionColor = Color.Red;
                 txtResponse.SelectionFont = new Font(txtResponse.Font, FontStyle.Regular);
                 txtResponse.AppendText(ex.Message);
+
+                // Desactivando el botoón si hay un error
+                btnEnter.Enabled = false;
+                btnEnter.BackColor = Color.LightGreen;
             }
         }
 
@@ -72,12 +92,13 @@ namespace sap_installer_fields
         {
         }
 
-        private void label5_Click(object sender, EventArgs e)
+        private void label7_Click(object sender, EventArgs e)
         {
         }
 
-        private void label7_Click(object sender, EventArgs e)
+        private void btnEnter_Click(object sender, EventArgs e)
         {
+
         }
     }
 }
