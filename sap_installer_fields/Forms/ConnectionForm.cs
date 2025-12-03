@@ -1,7 +1,7 @@
 ﻿using sap_installer_fields.Models.Requests;
 using sap_installer_fields.Services;
 using sap_installer_fields.Forms;
-using SAPbobsCOM;
+using sap_installer_fields.Core;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -21,6 +21,9 @@ namespace sap_installer_fields
             this.AcceptButton = btnConnect;
         }
 
+        /// <summary>
+        /// Carga por default los tipos de base de datos de SAP
+        /// </summary>
         private void LoadDbType()
         {
             cmbDbType.Items.Add("HANA");
@@ -28,6 +31,9 @@ namespace sap_installer_fields
             cmbDbType.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Botón a SAP por DI API llamando al servicio correspondientt
+        /// </summary>
         private void btnConnect_Click(object sender, EventArgs e)
         {
             txtResponse.Clear();
@@ -48,7 +54,7 @@ namespace sap_installer_fields
                     DbType = cmbDbType.SelectedItem.ToString()
                 };
 
-                var company = _connectionService.Connect(request);
+                SapSession.Company = _connectionService.Connect(request);
 
                 txtResponse.Clear();
 
@@ -85,18 +91,9 @@ namespace sap_installer_fields
             }
         }
 
-        private void ConnectionForm_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-        }
-
+        /// <summary>
+        /// Botón que ingresa al formulario de instalador una vez se conecte con exito a SAP
+        /// </summary>
         private void btnEnter_Click(object sender, EventArgs e)
         {
             InstallerForm installerForm = new InstallerForm();

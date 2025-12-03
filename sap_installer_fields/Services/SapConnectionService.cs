@@ -10,6 +10,9 @@ namespace sap_installer_fields.Services
 {
     public class SapConnectionService
     {
+        /// <summary>
+        /// Método que conecta a SAP por DI API según campos de ConnectionForm
+        /// </summary>
         public Company Connect(SapConnectionRequest req)
         {
             Company company = new Company();

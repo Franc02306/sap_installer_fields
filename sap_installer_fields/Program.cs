@@ -18,8 +18,8 @@ namespace sap_installer_fields
             Application.SetCompatibleTextRenderingDefault(false);
 
             // Manualmente se abre el formulario de conexión SAP
-            ConnectionForm connectionForm = new ConnectionForm();
-            connectionForm.Show();
+            ConnectionForm conn = new ConnectionForm();
+            conn.Show();
 
             Application.Run();
         }

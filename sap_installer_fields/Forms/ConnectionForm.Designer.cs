@@ -65,7 +65,6 @@
             this.lblServer.Size = new System.Drawing.Size(49, 13);
             this.lblServer.TabIndex = 1;
             this.lblServer.Text = "Servidor:";
-            this.lblServer.Click += new System.EventHandler(this.label1_Click);
             // 
             // lblCompany
             // 
@@ -121,7 +120,6 @@
             this.lblResponseTitle.Size = new System.Drawing.Size(145, 13);
             this.lblResponseTitle.TabIndex = 9;
             this.lblResponseTitle.Text = "Respuesta de Conexión:";
-            this.lblResponseTitle.Click += new System.EventHandler(this.label7_Click);
             // 
             // txtCompany
             // 
@@ -198,7 +196,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConnectionForm";
             this.Text = "Instalador Campos SAP";
-            this.Load += new System.EventHandler(this.ConnectionForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
