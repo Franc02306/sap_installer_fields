@@ -72,6 +72,12 @@
     <Compile Include="Forms\ConnectionForm.Designer.cs">
       <DependentUpon>ConnectionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\InstallerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InstallerForm.Designer.cs">
+      <DependentUpon>InstallerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Requests\SapConnectionRequest.cs" />
     <Compile Include="Models\Requests\UdfRequest.cs" />
     <Compile Include="Models\Requests\UdtRequest.cs" />
@@ -80,6 +86,9 @@
     <Compile Include="Services\SapConnectionService.cs" />
     <EmbeddedResource Include="Forms\ConnectionForm.resx">
       <DependentUpon>ConnectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InstallerForm.resx">
+      <DependentUpon>InstallerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

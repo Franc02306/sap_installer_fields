@@ -1,5 +1,6 @@
 ﻿using sap_installer_fields.Models.Requests;
 using sap_installer_fields.Services;
+using sap_installer_fields.Forms;
 using SAPbobsCOM;
 using System;
 using System.Drawing;
@@ -78,7 +79,7 @@ namespace sap_installer_fields
                 txtResponse.SelectionFont = new Font(txtResponse.Font, FontStyle.Regular);
                 txtResponse.AppendText(ex.Message);
 
-                // Desactivando el botoón si hay un error
+                // Desactivando el botón si hay un error
                 btnEnter.Enabled = false;
                 btnEnter.BackColor = Color.LightGreen;
             }
@@ -98,7 +99,9 @@ namespace sap_installer_fields
 
         private void btnEnter_Click(object sender, EventArgs e)
         {
-
+            InstallerForm installerForm = new InstallerForm();
+            installerForm.Show();
+            this.Close();
         }
     }
 }
