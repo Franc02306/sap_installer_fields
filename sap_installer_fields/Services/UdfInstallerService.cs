@@ -1,9 +1,7 @@
-﻿using sap_installer_fields.Models;
-using sap_installer_fields.Models.Requests;
+﻿using sap_installer_fields.Models.Requests;
 using SAPbobsCOM;
 using System;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace sap_installer_fields.Services
 {
@@ -16,6 +14,9 @@ namespace sap_installer_fields.Services
             _company = company;
         }
 
+        /// <summary>
+        /// Crear campos de usuario (TabPanel: UDF)
+        /// </summary>
         public string CreateUdf(UdfRequest req)
         {
             Recordset rs = null;

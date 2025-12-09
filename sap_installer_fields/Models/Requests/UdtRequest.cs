@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace sap_installer_fields.Models.Requests
+﻿namespace sap_installer_fields.Models.Requests
 {
     public class UdtRequest
     {
