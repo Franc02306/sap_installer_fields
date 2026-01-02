@@ -15,6 +15,7 @@ namespace sap_installer_fields.Forms
         private readonly Company _company;
         private List<UdfRequest> _udfList = new List<UdfRequest>();
         private List<UdtRequest> _udtList = new List<UdtRequest>();
+        private string _spFolderPath = string.Empty;
 
         public InstallerForm()
         {
@@ -193,6 +194,102 @@ namespace sap_installer_fields.Forms
         private void WriteUdtLog(string message)
         {
             txtLogUdt.AppendText(message + Environment.NewLine);
+        }
+
+        #endregion
+
+        #region SP - Stored Procedures
+
+        /// <summary>
+        /// Botón para escoger la ruta de los scripts SQL / HANA
+        /// </summary>
+        private void btnChoosePathSp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var dialog = new FolderBrowserDialog())
+                {
+                    if (dialog.ShowDialog() != DialogResult.OK)
+                        return;
+
+                    _spFolderPath = dialog.SelectedPath;
+                    txtSpFolderPath.Text = _spFolderPath;
+
+                    WriteSpLog($"[INFO] Carpeta seleccionada: {_spFolderPath}");
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteSpLog($"[ERROR] No se pudo seleccionar carpeta: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Botón para ejecutar los scripts SQL / HANA
+        /// </summary>
+        private void btnLoadSp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(_spFolderPath))
+                {
+                    MessageBox.Show("Primero seleccione una carpeta.", "Advertencia",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // 1. Detectar tipo de BD
+                string dbTypeFolder = _company.DbServerType == BoDataServerTypes.dst_HANADB
+                    ? "HANA"
+                    : "SQL";
+
+                string finalPath = Path.Combine(_spFolderPath, dbTypeFolder);
+
+                if (!Directory.Exists(finalPath))
+                {
+                    WriteSpLog($"[ERROR] La carpeta '{dbTypeFolder}' no existe dentro de la ruta seleccionada.");
+                    return;
+                }
+
+                // 2. Obtener archivos .sql
+                var sqlFiles = Directory.GetFiles(finalPath, "*.sql", SearchOption.TopDirectoryOnly);
+
+                if (sqlFiles.Length == 0)
+                {
+                    WriteSpLog("[ERROR] No se encontraron archivos .sql.");
+                    return;
+                }
+
+                var spService = new SpInstallerService(_company);
+
+                WriteSpLog($"=== INICIO INSTALACIÓN SP ({dbTypeFolder}) ===");
+
+                foreach (var file in sqlFiles)
+                {
+                    var req = new SpScriptRequest
+                    {
+                        FilePath = file,
+                        ScriptContent = File.ReadAllText(file)
+                    };
+
+                    string result = spService.ExecuteScript(req);
+                    WriteSpLog(result);
+                }
+
+                WriteSpLog("=== FIN INSTALACIÓN SP ===");
+            }
+            catch (Exception ex)
+            {
+                WriteSpLog($"[ERROR] Instalación fallida: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Mostrar el log en pantalla del resultado de la ejecución de scripts SQL / HANA
+        /// </summary>
+        private void WriteSpLog(string message)
+        {
+            txtLogSp.AppendText(message + Environment.NewLine);
         }
 
         #endregion

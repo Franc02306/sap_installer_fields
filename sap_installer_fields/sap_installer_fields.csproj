@@ -83,11 +83,13 @@
       <DependentUpon>InstallerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Requests\SapConnectionRequest.cs" />
+    <Compile Include="Models\Requests\SpScriptRequest.cs" />
     <Compile Include="Models\Requests\UdfRequest.cs" />
     <Compile Include="Models\Requests\UdtRequest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SapConnectionService.cs" />
+    <Compile Include="Services\SpInstallerService.cs" />
     <Compile Include="Services\UdfInstallerService.cs" />
     <Compile Include="Services\UdtInstallerService.cs" />
     <EmbeddedResource Include="Forms\ConnectionForm.resx">

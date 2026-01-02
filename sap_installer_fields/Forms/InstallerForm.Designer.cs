@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstallerForm));
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.FormUITabPanel = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtLogUdf = new System.Windows.Forms.TextBox();
             this.dgvUdfList = new System.Windows.Forms.DataGridView();
@@ -42,24 +42,30 @@
             this.btnLoadUdtJson = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabControl1.SuspendLayout();
+            this.btnLoadSp = new System.Windows.Forms.Button();
+            this.btnChoosePathSp = new System.Windows.Forms.Button();
+            this.txtLogSp = new System.Windows.Forms.TextBox();
+            this.labelPath = new System.Windows.Forms.Label();
+            this.txtSpFolderPath = new System.Windows.Forms.TextBox();
+            this.FormUITabPanel.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUdfList)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUdtList)).BeginInit();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // FormUITabPanel
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(771, 478);
-            this.tabControl1.TabIndex = 0;
+            this.FormUITabPanel.Controls.Add(this.tabPage1);
+            this.FormUITabPanel.Controls.Add(this.tabPage2);
+            this.FormUITabPanel.Controls.Add(this.tabPage3);
+            this.FormUITabPanel.Controls.Add(this.tabPage4);
+            this.FormUITabPanel.Location = new System.Drawing.Point(12, 12);
+            this.FormUITabPanel.Name = "FormUITabPanel";
+            this.FormUITabPanel.SelectedIndex = 0;
+            this.FormUITabPanel.Size = new System.Drawing.Size(771, 478);
+            this.FormUITabPanel.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -72,7 +78,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(763, 452);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "UDF";
+            this.tabPage1.Text = "Campos de Usuario";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // txtLogUdf
@@ -138,7 +144,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(763, 452);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "UDT";
+            this.tabPage2.Text = "Tablas de Usuario";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // dgvUdtList
@@ -205,37 +211,107 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.txtSpFolderPath);
+            this.tabPage4.Controls.Add(this.labelPath);
+            this.tabPage4.Controls.Add(this.txtLogSp);
+            this.tabPage4.Controls.Add(this.btnChoosePathSp);
+            this.tabPage4.Controls.Add(this.btnLoadSp);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(763, 452);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "SP";
+            this.tabPage4.Text = "Stored Procedures";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnLoadSp
+            // 
+            this.btnLoadSp.BackColor = System.Drawing.Color.LightGreen;
+            this.btnLoadSp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoadSp.Location = new System.Drawing.Point(179, 41);
+            this.btnLoadSp.Name = "btnLoadSp";
+            this.btnLoadSp.Size = new System.Drawing.Size(136, 44);
+            this.btnLoadSp.TabIndex = 4;
+            this.btnLoadSp.Text = "Crear Procedimientos";
+            this.btnLoadSp.UseVisualStyleBackColor = false;
+            this.btnLoadSp.Click += new System.EventHandler(this.btnLoadSp_Click);
+            // 
+            // btnChoosePathSp
+            // 
+            this.btnChoosePathSp.BackColor = System.Drawing.Color.Lavender;
+            this.btnChoosePathSp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChoosePathSp.Location = new System.Drawing.Point(27, 41);
+            this.btnChoosePathSp.Name = "btnChoosePathSp";
+            this.btnChoosePathSp.Size = new System.Drawing.Size(136, 44);
+            this.btnChoosePathSp.TabIndex = 5;
+            this.btnChoosePathSp.Text = "Seleccionar Carpeta";
+            this.btnChoosePathSp.UseVisualStyleBackColor = false;
+            this.btnChoosePathSp.Click += new System.EventHandler(this.btnChoosePathSp_Click);
+            // 
+            // txtLogSp
+            // 
+            this.txtLogSp.BackColor = System.Drawing.Color.White;
+            this.txtLogSp.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtLogSp.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLogSp.ForeColor = System.Drawing.Color.Black;
+            this.txtLogSp.Location = new System.Drawing.Point(3, 223);
+            this.txtLogSp.Multiline = true;
+            this.txtLogSp.Name = "txtLogSp";
+            this.txtLogSp.ReadOnly = true;
+            this.txtLogSp.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtLogSp.Size = new System.Drawing.Size(757, 226);
+            this.txtLogSp.TabIndex = 6;
+            // 
+            // labelPath
+            // 
+            this.labelPath.AutoSize = true;
+            this.labelPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPath.Location = new System.Drawing.Point(24, 116);
+            this.labelPath.Name = "labelPath";
+            this.labelPath.Size = new System.Drawing.Size(131, 17);
+            this.labelPath.TabIndex = 7;
+            this.labelPath.Text = "Ruta Seleccionada:";
+            // 
+            // txtSpFolderPath
+            // 
+            this.txtSpFolderPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSpFolderPath.BackColor = System.Drawing.Color.White;
+            this.txtSpFolderPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSpFolderPath.ForeColor = System.Drawing.Color.Black;
+            this.txtSpFolderPath.Location = new System.Drawing.Point(29, 144);
+            this.txtSpFolderPath.Name = "txtSpFolderPath";
+            this.txtSpFolderPath.ReadOnly = true;
+            this.txtSpFolderPath.Size = new System.Drawing.Size(500, 20);
+            this.txtSpFolderPath.TabIndex = 8;
+            this.txtSpFolderPath.TabStop = false;
+            this.txtSpFolderPath.Text = "Ruta aun no seleccionada";
             // 
             // InstallerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(795, 502);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.FormUITabPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "InstallerForm";
             this.Text = "Instalador Campos SAP";
-            this.tabControl1.ResumeLayout(false);
+            this.FormUITabPanel.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUdfList)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUdtList)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl FormUITabPanel;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
@@ -248,5 +324,10 @@
         private System.Windows.Forms.TextBox txtLogUdt;
         private System.Windows.Forms.Button btnInstallUdt;
         private System.Windows.Forms.Button btnLoadUdtJson;
+        private System.Windows.Forms.Button btnLoadSp;
+        private System.Windows.Forms.TextBox txtLogSp;
+        private System.Windows.Forms.Button btnChoosePathSp;
+        private System.Windows.Forms.TextBox txtSpFolderPath;
+        private System.Windows.Forms.Label labelPath;
     }
 }
